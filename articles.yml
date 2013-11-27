@@ -1,0 +1,8 @@
+- id: first-post
+  title: 新建博客啦
+  postedOn: !!str 2013-11-26
+  author: 贱圣
+  tags: 
+    - blog
+    - papery
+  abstract: 终于在github上把blog弄好了，以后阵地就转移到这里了

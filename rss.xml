@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+    <channel>
+        <title>RSS源标题</title>
+        <link>http://albert-feng.github.io/</link>
+        <description>RSS源描述</description>
+        <lastBuildDate>Tue, 26 Nov 2013 23:16:06 +0800</lastBuildDate>
+        <language>zh-cn</language>
+        
+        <item> 
+            <title>新建博客啦</title> 
+            <link>http://albert-feng.github.io//articles/first-post.html?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=rss</link> 
+            <guid>http://albert-feng.github.io//articles/first-post.html</guid> 
+            <author>fwg1989@gmail.com 贱圣</author> 
+            <pubDate>Tue, 26 Nov 2013 00:00:00 +0800</pubDate> 
+            <description>终于在github上把blog弄好了，以后阵地就转移到这里了</description> 
+        </item> 
+        
+    </channel>
+</rss>
