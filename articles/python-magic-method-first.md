@@ -49,9 +49,7 @@ if __name__ == '__main__':
   
     a = Test()
 </pre>
-
 这段代码的执行结果为：
-
 <pre class="prettyprint linenums">
 $ python test.py
 in new method  
