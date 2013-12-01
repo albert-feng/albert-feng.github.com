@@ -1,3 +1,12 @@
+- id: python-magic-method-first
+  title: Python魔术方法之一
+  postedOn: !!str 2013-11-27
+  author: 贱圣
+  tags: 
+    - Python
+    - magic method
+  abstract: Python魔术方法之一
+
 - id: first-post
   title: 新建博客啦
   postedOn: !!str 2013-11-26

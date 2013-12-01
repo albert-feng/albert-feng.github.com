@@ -1,0 +1,124 @@
+<!doctype html>
+<html>
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="description" content="页面meta中的description"/>
+        <meta name="keywords" content="关键词1,关键词2,关键词3"/>
+        <meta name="author" content="页面meta中的author"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+        <title>兵疯王座 - Python魔术方法之一
+</title>
+        <link rel="stylesheet" href="/assets/vendor/normalize.css"/>
+        <link rel="stylesheet" href="/assets/vendor/prettify-night.css"/>
+        <link rel="stylesheet" href="/assets/themes/default/main.css"/>
+        <link rel="shortcut icon" href="/fav.ico"/>
+        <script type="text/javascript" src="/assets/vendor/prettify.js"></script>
+        
+    </head>
+    <body onload="prettyPrint()">
+    <div id="header">
+        <div id="header-inner">
+            <div id="title"><a href="/">兵疯王座</a></div>
+            <div id="subtitle">贱圣的地盘</div>
+        </div>
+    </div>
+
+<div id="main">
+    <div id="main-inner">
+        <div id="topnav">
+            <ul>
+                <li><a href="/">首页</a></li>
+                <li class="sep"> | </li>
+                <li><a href="/tag.html">标签</a></li>
+                
+<li class="sep"> | </li>
+<li><a href="/pages/about-me.html" target="_self">关于我</a></li>
+
+<li class="sep"> | </li>
+<li><a href="https://github.com/albert-feng" target="_blank">github</a></li>
+
+
+            </ul>
+            <div style="clear:both;"></div>
+        </div>
+        <div id="article-title">
+            <a href="/articles/python-magic-method-first.html">Python魔术方法之一</a>
+        </div>
+        <div id="article-meta">
+            作者 贱圣 | 发布于 2013-11-27
+        </div>
+        <div id="article-tags">
+        
+        <a class="tag" href="/tag.html#Python">Python</a>
+        
+        <a class="tag" href="/tag.html#magic method">magic method</a>
+        
+        </div>
+        <div id="article-content">
+            <h1 id="python-">Python类的魔法之一——创建类的实例</h1>
+<p>我准备用几篇文章来介绍Python的魔术方法，首先说Python创建类的实例的过程。
+在开始前，我们先来回顾下Python类实例的属性：</p>
+<pre class="prettyprint linenums">
+>>> s = 'hello'  
+>>> dir(s)  
+['__add__', '__class__', '__contains__', '__delattr__', '__doc__', '__eq__', '__  
+format__', '__ge__', '__getattribute__', '__getitem__', '__getnewargs__', '__get  
+slice__', '__gt__', '__hash__', '__init__', '__le__', '__len__', '__lt__', '__mo  
+d__', '__mul__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__',  
+ '__rmod__', '__rmul__', '__setattr__', '__sizeof__', '__str__', '__subclasshook  
+__', '_formatter_field_name_split', '_formatter_parser', 'capitalize', 'center',  
+ 'count', 'decode', 'encode', 'endswith', 'expandtabs', 'find', 'format', 'index  
+', 'isalnum', 'isalpha', 'isdigit', 'islower', 'isspace', 'istitle', 'isupper',  
+'join', 'ljust', 'lower', 'lstrip', 'partition', 'replace', 'rfind', 'rindex', '  
+rjust', 'rpartition', 'rsplit', 'rstrip', 'split', 'splitlines', 'startswith', '  
+strip', 'swapcase', 'title', 'translate', 'upper', 'zfill']  
+</pre>
+
+<p>在上面的例子里面，定义了一个字符串s。然后使用内建的 dir( ) 方法来看这个实例有哪些属性。</p>
+<p>注意输出里面出现的前后有两个下划线的方法，这些是Python的魔术方法，也是接下来要主要关注的。</p>
+<p>我们首先要关注的有3个方法，<strong>new</strong> 、<strong>init</strong>和<strong>del</strong>。</p>
+<p>首先这里面最熟悉的应该是就是 <strong>init</strong> 方法了，这也是我们在定义类的时候最常用的方法<strong>init</strong> 一般被当作是类的构造函数。不过实际上构造首先会调用 <strong>new</strong> 方法，由<strong>new</strong> 方法来构造一个对象，然后返回对象，由<strong>init</strong>来进行对象实例的初始化。不过大部分情况下<strong>init</strong>就够用了。</p>
+<p>上面介绍了构造函数，那么 <strong>del</strong> 就是析构函数了，顾名思义，这是在对象被执行垃圾回收的时候执行。在这里要注意 x.<strong>del</strong>( ) 并不实现del x的操作。在Python的内存管理中，有一个针对对象实例的计数器，只有计数器的计数变为0的时候，才会执行垃圾回收工作。所以计时一段Python程序执行结束，并不保证里面的对象实例的垃圾回收操作被触发。</p>
+<p>下面用一个例子来说明：</p>
+<pre class="prettyprint linenums">
+class Test(object):  
+
+    def __new__(cls,):  
+        print 'in new method'  
+        return object.__new__(cls)  
+
+    def __init__(self):  
+        print 'in init method'  
+
+    def __del__(self):  
+        print 'in del method'  
+
+if __name__ == '__main__':  
+
+    a = Test()
+</pre>
+
+<p>这段代码的执行结果为：</p>
+<pre class="prettyprint linenums">
+$ python test.py
+in new method  
+in init method  
+in del method  
+</pre>
+        </div>
+        
+    </div>
+</div>
+        <div id="footer">
+            <div id="footer-inner">
+                <p id="copyright">Copyright (c) 2011-2013 版权所有方</p>
+                <p id="icp"><a href="http://www.miibeian.gov.cn/" target="_blank">备案号</a></p>
+            </div>
+        </div>
+        <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+    </body>
+</html>
+
