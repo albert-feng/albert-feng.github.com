@@ -59,53 +59,36 @@
             <h1 id="python-">Python类的魔法之一——创建类的实例</h1>
 <p>我准备用几篇文章来介绍Python的魔术方法，首先说Python创建类的实例的过程。
 在开始前，我们先来回顾下Python类实例的属性：</p>
-<pre class="prettyprint linenums">
->>> s = 'hello'  
->>> dir(s)  
-['__add__', '__class__', '__contains__', '__delattr__', '__doc__', '__eq__', '__  
-format__', '__ge__', '__getattribute__', '__getitem__', '__getnewargs__', '__get  
-slice__', '__gt__', '__hash__', '__init__', '__le__', '__len__', '__lt__', '__mo  
-d__', '__mul__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__',  
- '__rmod__', '__rmul__', '__setattr__', '__sizeof__', '__str__', '__subclasshook  
-__', '_formatter_field_name_split', '_formatter_parser', 'capitalize', 'center',  
- 'count', 'decode', 'encode', 'endswith', 'expandtabs', 'find', 'format', 'index  
-', 'isalnum', 'isalpha', 'isdigit', 'islower', 'isspace', 'istitle', 'isupper',  
-'join', 'ljust', 'lower', 'lstrip', 'partition', 'replace', 'rfind', 'rindex', '  
-rjust', 'rpartition', 'rsplit', 'rstrip', 'split', 'splitlines', 'startswith', '  
-strip', 'swapcase', 'title', 'translate', 'upper', 'zfill']  
-</pre>
-
+<pre class="prettyprint linenums lang-python">&gt;&gt;&gt; s = &#39;hello&#39;  
+&gt;&gt;&gt; dir(s)  
+[&#39;__add__&#39;, &#39;__class__&#39;, &#39;__contains__&#39;, &#39;__delattr__&#39;, &#39;__doc__&#39;, &#39;__eq__&#39;, &#39;__ format__&#39;, &#39;__ge__&#39;, &#39;__getattribute__&#39;, &#39;__getitem__&#39;, &#39;__getnewargs__&#39;, &#39;__get  slice__&#39;, &#39;__gt__&#39;, &#39;__hash__&#39;, &#39;__init__&#39;, &#39;__le__&#39;, &#39;__len__&#39;, &#39;__lt__&#39;, &#39;__mod__&#39;, &#39;__mul__&#39;, &#39;__ne__&#39;, &#39;__new__&#39;, &#39;__reduce__&#39;, &#39;__reduce_ex__&#39;, &#39;__repr__&#39;,  &#39;__rmod__&#39;, &#39;__rmul__&#39;, &#39;__setattr__&#39;, &#39;__sizeof__&#39;, &#39;__str__&#39;, &#39;__subclasshook__&#39;, &#39;_formatter_field_name_split&#39;, &#39;_formatter_parser&#39;, &#39;capitalize&#39;, &#39;center&#39;, &#39;count&#39;, &#39;decode&#39;, &#39;encode&#39;, &#39;endswith&#39;, &#39;expandtabs&#39;, &#39;find&#39;, &#39;format&#39;, &#39;index &#39;, &#39;isalnum&#39;, &#39;isalpha&#39;, &#39;isdigit&#39;, &#39;islower&#39;, &#39;isspace&#39;, &#39;istitle&#39;, &#39;isupper&#39;, &#39;join&#39;, &#39;ljust&#39;, &#39;lower&#39;, &#39;lstrip&#39;, &#39;partition&#39;, &#39;replace&#39;, &#39;rfind&#39;, &#39;rindex&#39;, &#39;rjust&#39;, &#39;rpartition&#39;, &#39;rsplit&#39;, &#39;rstrip&#39;, &#39;split&#39;, &#39;splitlines&#39;, &#39;startswith&#39;, &#39;strip&#39;, &#39;swapcase&#39;, &#39;title&#39;, &#39;translate&#39;, &#39;upper&#39;, &#39;zfill&#39;]</pre>
 <p>在上面的例子里面，定义了一个字符串s。然后使用内建的 dir( ) 方法来看这个实例有哪些属性。</p>
 <p>注意输出里面出现的前后有两个下划线的方法，这些是Python的魔术方法，也是接下来要主要关注的。</p>
 <p>我们首先要关注的有3个方法，<strong>new</strong> 、<strong>init</strong>和<strong>del</strong>。</p>
 <p>首先这里面最熟悉的应该是就是 <strong>init</strong> 方法了，这也是我们在定义类的时候最常用的方法<strong>init</strong> 一般被当作是类的构造函数。不过实际上构造首先会调用 <strong>new</strong> 方法，由<strong>new</strong> 方法来构造一个对象，然后返回对象，由<strong>init</strong>来进行对象实例的初始化。不过大部分情况下<strong>init</strong>就够用了。</p>
 <p>上面介绍了构造函数，那么 <strong>del</strong> 就是析构函数了，顾名思义，这是在对象被执行垃圾回收的时候执行。在这里要注意 x.<strong>del</strong>( ) 并不实现del x的操作。在Python的内存管理中，有一个针对对象实例的计数器，只有计数器的计数变为0的时候，才会执行垃圾回收工作。所以计时一段Python程序执行结束，并不保证里面的对象实例的垃圾回收操作被触发。</p>
 <p>下面用一个例子来说明：</p>
-<pre class="prettyprint linenums">
-class Test(object):  
+<pre class="prettyprint linenums lang-python">class Test(object):  
 
     def __new__(cls,):  
-        print 'in new method'  
+        print &#39;in new method&#39;  
         return object.__new__(cls)  
 
     def __init__(self):  
-        print 'in init method'  
+        print &#39;in init method&#39;  
 
     def __del__(self):  
-        print 'in del method'  
+        print &#39;in del method&#39;  
 
-if __name__ == '__main__':  
+if __name__ == &#39;__main__&#39;:  
 
-    a = Test()
-</pre>
-
+    a = Test()</pre>
 <p>这段代码的执行结果为：</p>
-<pre class="prettyprint linenums">
-$ python test.py
+<pre class="prettyprint linenums lang-python">$ python test.py
 in new method  
 in init method  
-in del method  
-</pre>
+in del method</pre>
+
         </div>
         
     </div>

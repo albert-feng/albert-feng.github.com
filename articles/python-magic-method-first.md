@@ -4,21 +4,11 @@ Python类的魔法之一——创建类的实例
 我准备用几篇文章来介绍Python的魔术方法，首先说Python创建类的实例的过程。
 在开始前，我们先来回顾下Python类实例的属性：
 
-<pre class="prettyprint linenums">
+```python
 >>> s = 'hello'  
 >>> dir(s)  
-['__add__', '__class__', '__contains__', '__delattr__', '__doc__', '__eq__', '__  
-format__', '__ge__', '__getattribute__', '__getitem__', '__getnewargs__', '__get  
-slice__', '__gt__', '__hash__', '__init__', '__le__', '__len__', '__lt__', '__mo  
-d__', '__mul__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__',  
- '__rmod__', '__rmul__', '__setattr__', '__sizeof__', '__str__', '__subclasshook  
-__', '_formatter_field_name_split', '_formatter_parser', 'capitalize', 'center',  
- 'count', 'decode', 'encode', 'endswith', 'expandtabs', 'find', 'format', 'index  
-', 'isalnum', 'isalpha', 'isdigit', 'islower', 'isspace', 'istitle', 'isupper',  
-'join', 'ljust', 'lower', 'lstrip', 'partition', 'replace', 'rfind', 'rindex', '  
-rjust', 'rpartition', 'rsplit', 'rstrip', 'split', 'splitlines', 'startswith', '  
-strip', 'swapcase', 'title', 'translate', 'upper', 'zfill']  
-</pre>
+['__add__', '__class__', '__contains__', '__delattr__', '__doc__', '__eq__', '__ format__', '__ge__', '__getattribute__', '__getitem__', '__getnewargs__', '__get  slice__', '__gt__', '__hash__', '__init__', '__le__', '__len__', '__lt__', '__mod__', '__mul__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__',  '__rmod__', '__rmul__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '_formatter_field_name_split', '_formatter_parser', 'capitalize', 'center', 'count', 'decode', 'encode', 'endswith', 'expandtabs', 'find', 'format', 'index ', 'isalnum', 'isalpha', 'isdigit', 'islower', 'isspace', 'istitle', 'isupper', 'join', 'ljust', 'lower', 'lstrip', 'partition', 'replace', 'rfind', 'rindex', 'rjust', 'rpartition', 'rsplit', 'rstrip', 'split', 'splitlines', 'startswith', 'strip', 'swapcase', 'title', 'translate', 'upper', 'zfill']  
+```
 
 在上面的例子里面，定义了一个字符串s。然后使用内建的 dir( ) 方法来看这个实例有哪些属性。
 
@@ -32,7 +22,7 @@ strip', 'swapcase', 'title', 'translate', 'upper', 'zfill']
 
 下面用一个例子来说明：
 
-<pre class="prettyprint linenums">
+```python
 class Test(object):  
   
     def __new__(cls,):  
@@ -48,13 +38,13 @@ class Test(object):
 if __name__ == '__main__':  
   
     a = Test()
-</pre>
+```
 
 这段代码的执行结果为：
 
-<pre class="prettyprint linenums">
+```python
 $ python test.py
 in new method  
 in init method  
 in del method  
-</pre>
+```
