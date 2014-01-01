@@ -4,8 +4,17 @@
         <title>RSS源标题</title>
         <link>http://albert-feng.github.io/</link>
         <description>RSS源描述</description>
-        <lastBuildDate>Tue, 03 Dec 2013 21:13:29 +0800</lastBuildDate>
+        <lastBuildDate>Wed, 01 Jan 2014 22:54:32 +0800</lastBuildDate>
         <language>zh-cn</language>
+        
+        <item> 
+            <title>Python魔术方法之二</title> 
+            <link>http://albert-feng.github.io//articles/python-magic-method-second.html?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=rss</link> 
+            <guid>http://albert-feng.github.io//articles/python-magic-method-second.html</guid> 
+            <author>fwg1989@gmail.com 贱圣</author> 
+            <pubDate>Fri, 27 Dec 2013 00:00:00 +0800</pubDate> 
+            <description>Python魔术方法之二</description> 
+        </item> 
         
         <item> 
             <title>Python魔术方法之一</title> 

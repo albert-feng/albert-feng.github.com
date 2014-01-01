@@ -1,3 +1,12 @@
+- id: python-magic-method-second
+  title: Python魔术方法之二
+  postedOn: !!str 2013-12-27
+  author: 贱圣
+  tags: 
+    - Python
+    - magic method
+  abstract: Python魔术方法之二
+
 - id: python-magic-method-first
   title: Python魔术方法之一
   postedOn: !!str 2013-11-27
