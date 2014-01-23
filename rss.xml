@@ -4,8 +4,17 @@
         <title>RSS源标题</title>
         <link>http://albert-feng.github.io/</link>
         <description>RSS源描述</description>
-        <lastBuildDate>Thu, 02 Jan 2014 22:26:22 +0800</lastBuildDate>
+        <lastBuildDate>Thu, 23 Jan 2014 22:26:37 +0800</lastBuildDate>
         <language>zh-cn</language>
+        
+        <item> 
+            <title>Python魔术方法之三</title> 
+            <link>http://albert-feng.github.io//articles/python-magic-method-third.html?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=rss</link> 
+            <guid>http://albert-feng.github.io//articles/python-magic-method-third.html</guid> 
+            <author>fwg1989@gmail.com 贱圣</author> 
+            <pubDate>Wed, 08 Jan 2014 00:00:00 +0800</pubDate> 
+            <description>Python魔术方法之三，Python内建函数</description> 
+        </item> 
         
         <item> 
             <title>Python魔术方法之二</title> 
@@ -13,7 +22,7 @@
             <guid>http://albert-feng.github.io//articles/python-magic-method-second.html</guid> 
             <author>fwg1989@gmail.com 贱圣</author> 
             <pubDate>Fri, 27 Dec 2013 00:00:00 +0800</pubDate> 
-            <description>Python魔术方法之二</description> 
+            <description>Python魔术方法之二，设置，获取对象属性</description> 
         </item> 
         
         <item> 
@@ -22,7 +31,7 @@
             <guid>http://albert-feng.github.io//articles/python-magic-method-first.html</guid> 
             <author>fwg1989@gmail.com 贱圣</author> 
             <pubDate>Wed, 27 Nov 2013 00:00:00 +0800</pubDate> 
-            <description>Python魔术方法之一</description> 
+            <description>Python魔术方法之一，构建对象</description> 
         </item> 
         
         <item> 

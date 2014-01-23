@@ -7,7 +7,7 @@
         <meta name="keywords" content="关键词1,关键词2,关键词3"/>
         <meta name="author" content="页面meta中的author"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-        <title>兵疯王座 - Python魔术方法之二
+        <title>兵疯王座 - Python魔术方法之三
 </title>
         <link rel="stylesheet" href="/assets/vendor/normalize.css"/>
         <link rel="stylesheet" href="/assets/vendor/prettify-light.css"/>
@@ -47,10 +47,10 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
             <div style="clear:both;"></div>
         </div>
         <div id="article-title">
-            <a href="/articles/python-magic-method-second.html">Python魔术方法之二</a>
+            <a href="/articles/python-magic-method-third.html">Python魔术方法之三</a>
         </div>
         <div id="article-meta">
-            作者 贱圣 | 发布于 2013-12-27
+            作者 贱圣 | 发布于 2014-1-8
         </div>
         <div id="article-tags">
         
@@ -60,67 +60,21 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
         
         </div>
         <div id="article-content">
-            <h1 id="python-">Python类的魔法之一——定制类的属性</h1>
-<p>在上一篇里，首先了解了Python如何管理对象的创建和删除。现在来了解如何利用魔术方法定制类的属性。
-在Python，比较常见的使用getter和setter来获取属性或为属性赋值。其实我们还可以用魔术方法来定制类在获取属性或被赋值时的动作。
-在Python里，有4个魔术方法是来处理属性的。__getattr__, __setattr__ ，__delsttr__ 和 __getattribute__。
-首先来看__setattr__。这是用来获取对象属性时调用的魔术方法。也就是说，当你执行obj.attr的时候，实际上会调用obj.__getattr__(&#39;attr&#39;)。不过在使用这个方法的时候需要相当的小心，看看下面的代码。</p>
-<pre class="prettyprint linenums lang-python">def __setattr__(self, name):
-    return self.name
+            <h1 id="python-build-in-">Python类的魔法之三——改变对象的build-in函数的执行</h1>
+<p>在Python里有一些内建函数，具体见下图：
+<img src="image/build-in-function.jpg" alt="build in function">
+内建函数提供了一些常用的函数。不过通过魔术方法的使用，这些内建函数的行为也是可以改变的。
+以len()为例。len是用来计算对象长度的函数，我们可以来改变使用len时的行为：</p>
+<pre class="prettyprint linenums lang-python">class Test(object):
+    def __len__(self):
+        print &#39;get the length&#39;
+        return 0
 
-def __setattr__(self, name):
-    return self.__dict__[name]</pre>
-<p>上面的代码里，两个用于获取对象属性的魔术方法。不过上面一个有点问题。因为在调用obj.attr = val 的时候会调用到 __setattr__这个魔术方法，像第一段代码这么写会导致循环调用引发异常。正确的写法应该是下面的一种，从对象的属性键值对里将需要获取的值取出来。
-这个问题在定义有关对象属性的魔术方法时都要注意的地方。
-在调用del obj.attr的时候会调用到__delattr__这个魔术方法，使用方法跟__setattr__差不过。下面主要来关注获取对象属性的魔术方法。
-用于获取对象属性的魔术方法有两个：__getattr__ 和 __getattribute__。这两个方法都有其用处。在正常的情况下。比如调用obj.attr的时候，会首先调用__getattribute__这个方法，如果能获取到属性，则返回。如果没有该属性，则抛出异常。然后会执行__getattr__，主要的异常处理部分会在这个方法里处理。
-下面的一个例子可以表现出有关属性的魔术方法是如何运行的：</p>
-<pre class="prettyprint linenums lang-python">#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
-class Person(object):
-
-    def __init__(self, name, age):
-        self.name = name
-        self.age = age
-
-    def __setattr__(self, attr, value):
-        print &#39;setting attribute&#39;
-        super(Person, self).__setattr__(attr, value)
-
-    def __delattr__(self, attr):
-        print &#39;deleting attribute&#39;
-        super(Person, self).__delattr__(attr)
-
-    def __getattribute__(self, attr):
-        print &#39;in getattribute&#39;
-        super(Person, self).__getattribute__(attr)
-
-    def __getattr__(self, attr):
-        print &#39;in getattr&#39;
-        raise Exception(&#39;Attribute not exists&#39;)
-
-if __name__ == &#39;__main__&#39;:
-
-    a = Person(&#39;Tom&#39;, &#39;23&#39;)
-    a.age = &#39;25&#39;
-    del a.name
-    print a.name</pre>
-<p>上面代码的执行结果：</p>
-<pre class="prettyprint linenums lang-python">$ python magic.py
-setting attribute
-setting attribute
-setting attribute
-deleting attribute
-in getattribute
-in getattr
-Traceback (most recent call last):
-  File &quot;magic.py&quot;, line 31, in &lt;module&gt;
-    print a.name
-  File &quot;magic.py&quot;, line 24, in __getattr__
-    raise Exception(&#39;Attribute not exists&#39;)
-Exception: Attribute not exists</pre>
-<p>从上面的例子里可以很清楚的看出有关属性的魔术方法的执行。</p>
+a = Test()
+len(a)
+get the length
+0</pre>
+<p>以这个例子为参考，实际上其他的内建方法的修改都差不多了</p>
 
         </div>
         
