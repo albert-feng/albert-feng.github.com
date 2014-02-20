@@ -7,7 +7,7 @@
         <meta name="keywords" content="python,linux,network"/>
         <meta name="author" content="贱圣"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-        <title>兵疯王座 - Python魔术方法之三
+        <title>兵疯王座 - Iptables里的状态
 </title>
         <link rel="stylesheet" href="/assets/vendor/normalize.css"/>
         <link rel="stylesheet" href="/assets/vendor/prettify-light.css"/>
@@ -47,34 +47,32 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
             <div style="clear:both;"></div>
         </div>
         <div id="article-title">
-            <a href="/articles/python-magic-method-third.html">Python魔术方法之三</a>
+            <a href="/articles/iptables-packet-status.html">Iptables里的状态</a>
         </div>
         <div id="article-meta">
-            作者 贱圣 | 发布于 2014-1-8
+            作者 贱圣 | 发布于 2014-2-16
         </div>
         <div id="article-tags">
         
-        <a class="tag" href="/tag.html#Python">Python</a>
+        <a class="tag" href="/tag.html#iptables">iptables</a>
         
-        <a class="tag" href="/tag.html#magic method">magic method</a>
+        <a class="tag" href="/tag.html#iptables status">iptables status</a>
         
         </div>
         <div id="article-content">
-            <h1 id="python-build-in-">Python类的魔法之三——改变对象的build-in函数的执行</h1>
-<p>在Python里有一些内建函数，具体见下图：
-<img src="image/build-in-function.jpg" alt="build in function">
-内建函数提供了一些常用的函数。不过通过魔术方法的使用，这些内建函数的行为也是可以改变的。
-以len()为例。len是用来计算对象长度的函数，我们可以来改变使用len时的行为：</p>
-<pre class="prettyprint linenums lang-python">class Test(object):
-    def __len__(self):
-        print &#39;get the length&#39;
-        return 0
-
-a = Test()
-len(a)
-get the length
-0</pre>
-<p>以这个例子为参考，实际上其他的内建方法的修改都差不多了</p>
+            <p>就不去细说iptables是干嘛的了。网络包在内核里会有几种状态，那么iptables也相应的支持对相应状态的包进行管理，下面直接来说说支持的状态是哪些。</p>
+<h2 id="new">NEW</h2>
+<p>NEW状态表示这个包是第一个发过来的。这意味着iptables会匹配被跟踪模块发现的第一个发过来的网络包。</p>
+<h2 id="established">ESTABLISHED</h2>
+<p>ESTABLISHED状态表示连接的双方向都收到了包。也就是说一个主机在发出第一个包之后收到了一个回复包。NEW状态在收到回复包或者通过了防火墙之后编程ESTABLISHED状态。</p>
+<h2 id="related">RELATED</h2>
+<p>RELATED就是一个相对比较微妙的状态了。RELATED状态指当前关联了另一个ESTABLISHED状态的连接。就是说首先要有一个ESTABLISHED状态的连接，这个连接会在主连接之外生成一个连接，这个新的连接就处于RELATED状态。</p>
+<h2 id="invalid">INVALID</h2>
+<p>INVALID表示这个包无法辨认，无法确认它的状态，可能有多种原因。</p>
+<h2 id="untracked">UNTRACKED</h2>
+<p>在Raw表里被匹配执行了NOTRACK的包会变成UNTRACKED状态。这表示这些包在经过接下来的链的时候不会被匹配上。</p>
+<p>下面一个TCP建立连接的图来简要介绍状态在这个过程中的变化：
+<img src="image/3-way-handshake.jpg" alt="3 way handshake"></p>
 
         </div>
         

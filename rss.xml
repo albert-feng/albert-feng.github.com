@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0">
     <channel>
-        <title>RSS源标题</title>
+        <title>贱圣的博客</title>
         <link>http://albert-feng.github.io/</link>
-        <description>RSS源描述</description>
-        <lastBuildDate>Thu, 23 Jan 2014 22:26:37 +0800</lastBuildDate>
+        <description>贱圣的博客</description>
+        <lastBuildDate>Thu, 20 Feb 2014 22:43:25 +0800</lastBuildDate>
         <language>zh-cn</language>
+        
+        <item> 
+            <title>Iptables里的状态</title> 
+            <link>http://albert-feng.github.io//articles/iptables-packet-status.html?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=rss</link> 
+            <guid>http://albert-feng.github.io//articles/iptables-packet-status.html</guid> 
+            <author>fwg1989@gmail.com 贱圣</author> 
+            <pubDate>Sun, 16 Feb 2014 00:00:00 +0800</pubDate> 
+            <description>Iptables里的状态</description> 
+        </item> 
         
         <item> 
             <title>Python魔术方法之三</title> 

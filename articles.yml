@@ -1,3 +1,12 @@
+- id: iptables-packet-status
+  title: Iptables里的状态
+  postedOn: !!str 2014-2-16
+  author: 贱圣
+  tags: 
+    - iptables
+    - iptables status
+  abstract: Iptables里的状态
+
 - id: python-magic-method-third
   title: Python魔术方法之三
   postedOn: !!str 2014-1-8
