@@ -1,3 +1,13 @@
+- id: mininet-basic
+  title: mininet的基本使用与操作
+  postedOn: !!str 2014-4-7
+  author: 贱圣
+  tags: 
+    - mininet
+    - sdn
+    - openflow
+  abstract: 一个学习SDN的模拟工具mininet
+
 - id: iptables-packet-status
   title: Iptables里的状态
   postedOn: !!str 2014-2-16
