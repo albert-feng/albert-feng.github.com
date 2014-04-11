@@ -1,5 +1,5 @@
 title: 兵疯王座
-subtitle: 贱圣的博客
+subtitle: 记录程序员路上的点滴
 link: http://albert-feng.github.io/
 meta:
   description: Life is short, I use Python
@@ -7,14 +7,16 @@ meta:
     - python
     - linux
     - network
+    - cloud computing
+    - sdn
   author: 贱圣
 master:
   name: 贱圣
   about: 一只爱Dota,爱踢球的码农
   email: fwg1989@gmail.com
 rss:
-  title: 贱圣的博客
-  desc: 贱圣的博客
+  title: 兵疯王座
+  desc: 记录程序员路上的点滴
   lang: zh-cn
   max: 10
 copyright:

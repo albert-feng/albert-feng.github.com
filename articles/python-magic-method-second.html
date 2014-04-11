@@ -4,7 +4,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="description" content="Life is short, I use Python"/>
-        <meta name="keywords" content="python,linux,network"/>
+        <meta name="keywords" content="python,linux,network,cloud computing,sdn"/>
         <meta name="author" content="贱圣"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
         <title>兵疯王座 - Python魔术方法之二
@@ -20,7 +20,7 @@
     <div id="header">
         <div id="header-inner">
             <div id="title"><a href="/">兵疯王座</a></div>
-            <div id="subtitle">贱圣的博客</div>
+            <div id="subtitle">记录程序员路上的点滴</div>
         </div>
     </div>
 
@@ -69,7 +69,8 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
     return self.name
 
 def __setattr__(self, name):
-    return self.__dict__[name]</pre>
+    return self.__dict__[name]
+</pre>
 <p>上面的代码里，两个用于获取对象属性的魔术方法。不过上面一个有点问题。因为在调用obj.attr = val 的时候会调用到 __setattr__这个魔术方法，像第一段代码这么写会导致循环调用引发异常。正确的写法应该是下面的一种，从对象的属性键值对里将需要获取的值取出来。
 这个问题在定义有关对象属性的魔术方法时都要注意的地方。
 在调用del obj.attr的时候会调用到__delattr__这个魔术方法，使用方法跟__setattr__差不过。下面主要来关注获取对象属性的魔术方法。
@@ -105,7 +106,8 @@ if __name__ == &#39;__main__&#39;:
     a = Person(&#39;Tom&#39;, &#39;23&#39;)
     a.age = &#39;25&#39;
     del a.name
-    print a.name</pre>
+    print a.name
+</pre>
 <p>上面代码的执行结果：</p>
 <pre class="prettyprint linenums lang-python">$ python magic.py
 setting attribute
@@ -119,7 +121,8 @@ Traceback (most recent call last):
     print a.name
   File &quot;magic.py&quot;, line 24, in __getattr__
     raise Exception(&#39;Attribute not exists&#39;)
-Exception: Attribute not exists</pre>
+Exception: Attribute not exists
+</pre>
 <p>从上面的例子里可以很清楚的看出有关属性的魔术方法的执行。</p>
 
         </div>

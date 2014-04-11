@@ -1,55 +1,242 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0">
     <channel>
-        <title>贱圣的博客</title>
+        <title>兵疯王座</title>
         <link>http://albert-feng.github.io/</link>
-        <description>贱圣的博客</description>
-        <lastBuildDate>Sat, 08 Mar 2014 17:02:11 +0800</lastBuildDate>
+        <description>记录程序员路上的点滴</description>
+        <lastBuildDate>Sat, 12 Apr 2014 00:16:36 +0800</lastBuildDate>
         <language>zh-cn</language>
         
         <item> 
+            <title>mininet的基本使用与操作</title> 
+            <link>http://albert-feng.github.io//articles/mininet-basic.html?utm_source=rss&amp;amp;utm_medium=rss&amp;amp;utm_campaign=rss</link> 
+            <guid>http://albert-feng.github.io//articles/mininet-basic.html</guid> 
+            <author>fwg1989@gmail.com 贱圣</author> 
+            <pubDate>Mon, 07 Apr 2014 00:00:00 +0800</pubDate> 
+            <description>&lt;p&gt;SDN是目前一个非常火热的技术，重新定义了数据中心的网络技术。不过这种技术在学习的时候会稍微有点麻烦，缺少足够的物理设备，不过&lt;a href=&quot;http://mininet.org/&quot;&gt;mininet&lt;/a&gt;提供了一个非常好的方法来模拟一个SDN网络里面的各种设备。&lt;/p&gt;
+&lt;h2 id=&quot;mininet-&quot;&gt;mininet的安装&lt;/h2&gt;
+&lt;p&gt;mininet官方提供了3种安装方法，在这里我使用源码安装的方式，其他的安装方法可以见&lt;a href=&quot;http://mininet.org/download/&quot;&gt;官方文档&lt;/a&gt;
+使用源码安装的时候官方推荐使用Ubuntu，因为它对于Open vSwitch有着更好的支持。第一步是下载源码&lt;/p&gt;
+&lt;pre class=&quot;prettyprint linenums lang-shell&quot;&gt;git clone git://github.com/mininet/mininet
+&lt;/pre&gt;
+&lt;p&gt;下载好之后就可以执行安装的命令了：&lt;/p&gt;
+&lt;pre class=&quot;prettyprint linenums lang-shell&quot;&gt;mininet/util/install.sh [options]
+&lt;/pre&gt;
+&lt;p&gt;option包含3个选项&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;-a：安装所有的东西，包括mininet，Open vSwitch，OpenFlow，wireshark，dissector和POX。&lt;/li&gt;
+&lt;li&gt;-nfv：安装mininet，Open Flow和Open vSwitch&lt;/li&gt;
+&lt;li&gt;-s mydir：使用选择的路径来存放代码进行安装（安装过程中会下载一些代码）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;mininet-&quot;&gt;mininet的基本使用&lt;/h2&gt;
+&lt;p&gt;安装好之后，就可以开始使用mininet来进行一些基本的操作了。
+首先来进入mininet的CLI，因为执行mininet命令的时候需要root权限，所以直接用root账户来操作比较方便。&lt;/p&gt;
+&lt;pre class=&quot;prettyprint linenums lang-shell&quot;&gt;$ sudo mn
+&lt;/pre&gt;
+&lt;p&gt;输入命令后，会进入mininet的CLI。并且创建出一个默认的拓扑结构，包含一个支持OpenFlow的交换机，两个主机和一个OpenFlow Controller。如果想实现出不同的拓扑，可以使用--topo选项来实现更多的功能。
+展示出mininet CLI的帮助文档&lt;/p&gt;
+&lt;pre class=&quot;prettyprint linenums lang-shell&quot;&gt;mininet&amp;gt; help
+&lt;/pre&gt;
+&lt;p&gt;查看拓扑里的所有节点&lt;/p&gt;
+&lt;pre class=&quot;prettyprint linenums lang-shell&quot;&gt;mininet&amp;gt; nodes
+&lt;/pre&gt;
+&lt;p&gt;查看拓扑的网络连接&lt;/p&gt;
+&lt;pre class=&quot;prettyprint linenums lang-shell&quot;&gt;mininet&amp;gt; net
+&lt;/pre&gt;
+&lt;p&gt;查看拓扑里的主机，交换机和Controller的详细信息&lt;/p&gt;
+&lt;pre class=&quot;prettyprint linenums lang-shell&quot;&gt;mininet&amp;gt; dump
+&lt;/pre&gt;
+&lt;p&gt;查看主机的网络设置&lt;/p&gt;
+&lt;pre class=&quot;prettyprint linenums lang-shell&quot;&gt;mininet&amp;gt; h1 ifconfig -a
+&lt;/pre&gt;
+&lt;p&gt;测试两个主机之间的连通性
+这里的命令其实就跟linux上的一下操作非常类似了，了解linux的话很快能够上手&lt;/p&gt;
+&lt;pre class=&quot;prettyprint linenums lang-shell&quot;&gt;mininet&amp;gt; h1 ping -c 1 h2
+&lt;/pre&gt;
+&lt;p&gt;还可以在主机上启动一个HTTP Server&lt;/p&gt;
+&lt;pre class=&quot;prettyprint linenums lang-shell&quot;&gt;mininet&amp;gt; h1 python -m SimpleHTTPServer 80 &amp;amp;
+mininet&amp;gt; h1 netstat -anp|grep 80
+tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN      3222/python
+&lt;/pre&gt;
+&lt;p&gt;在你执行完需要的操作后，你就可以来清除mininet&lt;/p&gt;
+&lt;pre class=&quot;prettyprint linenums lang-shell&quot;&gt;$ sudo mn -c
+&lt;/pre&gt;
+</description> 
+        </item> 
+        
+        <item> 
             <title>Iptables里的状态</title> 
-            <link>http://albert-feng.github.io//articles/iptables-packet-status.html?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=rss</link> 
+            <link>http://albert-feng.github.io//articles/iptables-packet-status.html?utm_source=rss&amp;amp;utm_medium=rss&amp;amp;utm_campaign=rss</link> 
             <guid>http://albert-feng.github.io//articles/iptables-packet-status.html</guid> 
             <author>fwg1989@gmail.com 贱圣</author> 
             <pubDate>Sun, 16 Feb 2014 00:00:00 +0800</pubDate> 
-            <description>Iptables里的状态</description> 
+            <description>&lt;p&gt;就不去细说iptables是干嘛的了。网络包在内核里会有几种状态，那么iptables也相应的支持对相应状态的包进行管理，下面直接来说说支持的状态是哪些。&lt;/p&gt;
+&lt;h2 id=&quot;new&quot;&gt;NEW&lt;/h2&gt;
+&lt;p&gt;NEW状态表示这个包是第一个发过来的。这意味着iptables会匹配被跟踪模块发现的第一个发过来的网络包。&lt;/p&gt;
+&lt;h2 id=&quot;established&quot;&gt;ESTABLISHED&lt;/h2&gt;
+&lt;p&gt;ESTABLISHED状态表示连接的双方向都收到了包。也就是说一个主机在发出第一个包之后收到了一个回复包。NEW状态在收到回复包或者通过了防火墙之后编程ESTABLISHED状态。&lt;/p&gt;
+&lt;h2 id=&quot;related&quot;&gt;RELATED&lt;/h2&gt;
+&lt;p&gt;RELATED就是一个相对比较微妙的状态了。RELATED状态指当前关联了另一个ESTABLISHED状态的连接。就是说首先要有一个ESTABLISHED状态的连接，这个连接会在主连接之外生成一个连接，这个新的连接就处于RELATED状态。&lt;/p&gt;
+&lt;h2 id=&quot;invalid&quot;&gt;INVALID&lt;/h2&gt;
+&lt;p&gt;INVALID表示这个包无法辨认，无法确认它的状态，可能有多种原因。&lt;/p&gt;
+&lt;h2 id=&quot;untracked&quot;&gt;UNTRACKED&lt;/h2&gt;
+&lt;p&gt;在Raw表里被匹配执行了NOTRACK的包会变成UNTRACKED状态。这表示这些包在经过接下来的链的时候不会被匹配上。&lt;/p&gt;
+&lt;p&gt;下面一个TCP建立连接的图来简要介绍状态在这个过程中的变化：
+&lt;img src=&quot;image/3-way-handshake.jpg&quot; alt=&quot;3 way handshake&quot;&gt;&lt;/p&gt;
+</description> 
         </item> 
         
         <item> 
             <title>Python魔术方法之三</title> 
-            <link>http://albert-feng.github.io//articles/python-magic-method-third.html?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=rss</link> 
+            <link>http://albert-feng.github.io//articles/python-magic-method-third.html?utm_source=rss&amp;amp;utm_medium=rss&amp;amp;utm_campaign=rss</link> 
             <guid>http://albert-feng.github.io//articles/python-magic-method-third.html</guid> 
             <author>fwg1989@gmail.com 贱圣</author> 
             <pubDate>Wed, 08 Jan 2014 00:00:00 +0800</pubDate> 
-            <description>Python魔术方法之三，Python内建函数</description> 
+            <description>&lt;h1 id=&quot;python-build-in-&quot;&gt;Python类的魔法之三——改变对象的build-in函数的执行&lt;/h1&gt;
+&lt;p&gt;在Python里有一些内建函数，具体见下图：
+&lt;img src=&quot;image/build-in-function.jpg&quot; alt=&quot;build in function&quot;&gt;
+内建函数提供了一些常用的函数。不过通过魔术方法的使用，这些内建函数的行为也是可以改变的。
+以len()为例。len是用来计算对象长度的函数，我们可以来改变使用len时的行为：&lt;/p&gt;
+&lt;pre class=&quot;prettyprint linenums lang-python&quot;&gt;class Test(object):
+    def __len__(self):
+        print &amp;#39;get the length&amp;#39;
+        return 0
+
+a = Test()
+len(a)
+get the length
+0
+&lt;/pre&gt;
+&lt;p&gt;以这个例子为参考，实际上其他的内建方法的修改都差不多了&lt;/p&gt;
+</description> 
         </item> 
         
         <item> 
             <title>Python魔术方法之二</title> 
-            <link>http://albert-feng.github.io//articles/python-magic-method-second.html?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=rss</link> 
+            <link>http://albert-feng.github.io//articles/python-magic-method-second.html?utm_source=rss&amp;amp;utm_medium=rss&amp;amp;utm_campaign=rss</link> 
             <guid>http://albert-feng.github.io//articles/python-magic-method-second.html</guid> 
             <author>fwg1989@gmail.com 贱圣</author> 
             <pubDate>Fri, 27 Dec 2013 00:00:00 +0800</pubDate> 
-            <description>Python魔术方法之二，设置，获取对象属性</description> 
+            <description>&lt;h1 id=&quot;python-&quot;&gt;Python类的魔法之一——定制类的属性&lt;/h1&gt;
+&lt;p&gt;在上一篇里，首先了解了Python如何管理对象的创建和删除。现在来了解如何利用魔术方法定制类的属性。
+在Python，比较常见的使用getter和setter来获取属性或为属性赋值。其实我们还可以用魔术方法来定制类在获取属性或被赋值时的动作。
+在Python里，有4个魔术方法是来处理属性的。__getattr__, __setattr__ ，__delsttr__ 和 __getattribute__。
+首先来看__setattr__。这是用来获取对象属性时调用的魔术方法。也就是说，当你执行obj.attr的时候，实际上会调用obj.__getattr__(&amp;#39;attr&amp;#39;)。不过在使用这个方法的时候需要相当的小心，看看下面的代码。&lt;/p&gt;
+&lt;pre class=&quot;prettyprint linenums lang-python&quot;&gt;def __setattr__(self, name):
+    return self.name
+
+def __setattr__(self, name):
+    return self.__dict__[name]
+&lt;/pre&gt;
+&lt;p&gt;上面的代码里，两个用于获取对象属性的魔术方法。不过上面一个有点问题。因为在调用obj.attr = val 的时候会调用到 __setattr__这个魔术方法，像第一段代码这么写会导致循环调用引发异常。正确的写法应该是下面的一种，从对象的属性键值对里将需要获取的值取出来。
+这个问题在定义有关对象属性的魔术方法时都要注意的地方。
+在调用del obj.attr的时候会调用到__delattr__这个魔术方法，使用方法跟__setattr__差不过。下面主要来关注获取对象属性的魔术方法。
+用于获取对象属性的魔术方法有两个：__getattr__ 和 __getattribute__。这两个方法都有其用处。在正常的情况下。比如调用obj.attr的时候，会首先调用__getattribute__这个方法，如果能获取到属性，则返回。如果没有该属性，则抛出异常。然后会执行__getattr__，主要的异常处理部分会在这个方法里处理。
+下面的一个例子可以表现出有关属性的魔术方法是如何运行的：&lt;/p&gt;
+&lt;pre class=&quot;prettyprint linenums lang-python&quot;&gt;#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+class Person(object):
+
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def __setattr__(self, attr, value):
+        print &amp;#39;setting attribute&amp;#39;
+        super(Person, self).__setattr__(attr, value)
+
+    def __delattr__(self, attr):
+        print &amp;#39;deleting attribute&amp;#39;
+        super(Person, self).__delattr__(attr)
+
+    def __getattribute__(self, attr):
+        print &amp;#39;in getattribute&amp;#39;
+        super(Person, self).__getattribute__(attr)
+
+    def __getattr__(self, attr):
+        print &amp;#39;in getattr&amp;#39;
+        raise Exception(&amp;#39;Attribute not exists&amp;#39;)
+
+if __name__ == &amp;#39;__main__&amp;#39;:
+
+    a = Person(&amp;#39;Tom&amp;#39;, &amp;#39;23&amp;#39;)
+    a.age = &amp;#39;25&amp;#39;
+    del a.name
+    print a.name
+&lt;/pre&gt;
+&lt;p&gt;上面代码的执行结果：&lt;/p&gt;
+&lt;pre class=&quot;prettyprint linenums lang-python&quot;&gt;$ python magic.py
+setting attribute
+setting attribute
+setting attribute
+deleting attribute
+in getattribute
+in getattr
+Traceback (most recent call last):
+  File &amp;quot;magic.py&amp;quot;, line 31, in &amp;lt;module&amp;gt;
+    print a.name
+  File &amp;quot;magic.py&amp;quot;, line 24, in __getattr__
+    raise Exception(&amp;#39;Attribute not exists&amp;#39;)
+Exception: Attribute not exists
+&lt;/pre&gt;
+&lt;p&gt;从上面的例子里可以很清楚的看出有关属性的魔术方法的执行。&lt;/p&gt;
+</description> 
         </item> 
         
         <item> 
             <title>Python魔术方法之一</title> 
-            <link>http://albert-feng.github.io//articles/python-magic-method-first.html?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=rss</link> 
+            <link>http://albert-feng.github.io//articles/python-magic-method-first.html?utm_source=rss&amp;amp;utm_medium=rss&amp;amp;utm_campaign=rss</link> 
             <guid>http://albert-feng.github.io//articles/python-magic-method-first.html</guid> 
             <author>fwg1989@gmail.com 贱圣</author> 
             <pubDate>Wed, 27 Nov 2013 00:00:00 +0800</pubDate> 
-            <description>Python魔术方法之一，构建对象</description> 
+            <description>&lt;h1 id=&quot;python-&quot;&gt;Python类的魔法之一——创建类的实例&lt;/h1&gt;
+&lt;p&gt;我准备用几篇文章来介绍Python的魔术方法，首先说Python创建类的实例的过程。
+在开始前，我们先来回顾下Python类实例的属性：&lt;/p&gt;
+&lt;pre class=&quot;prettyprint linenums lang-python&quot;&gt;&amp;gt;&amp;gt;&amp;gt; s = &amp;#39;hello&amp;#39;  
+&amp;gt;&amp;gt;&amp;gt; dir(s)  
+[&amp;#39;__add__&amp;#39;, &amp;#39;__class__&amp;#39;, &amp;#39;__contains__&amp;#39;, &amp;#39;__delattr__&amp;#39;, &amp;#39;__doc__&amp;#39;, &amp;#39;__eq__&amp;#39;, &amp;#39;__ format__&amp;#39;, &amp;#39;__ge__&amp;#39;, &amp;#39;__getattribute__&amp;#39;, &amp;#39;__getitem__&amp;#39;, &amp;#39;__getnewargs__&amp;#39;, &amp;#39;__get  slice__&amp;#39;, &amp;#39;__gt__&amp;#39;, &amp;#39;__hash__&amp;#39;, &amp;#39;__init__&amp;#39;, &amp;#39;__le__&amp;#39;, &amp;#39;__len__&amp;#39;, &amp;#39;__lt__&amp;#39;, &amp;#39;__mod__&amp;#39;, &amp;#39;__mul__&amp;#39;, &amp;#39;__ne__&amp;#39;, &amp;#39;__new__&amp;#39;, &amp;#39;__reduce__&amp;#39;, &amp;#39;__reduce_ex__&amp;#39;, &amp;#39;__repr__&amp;#39;,  &amp;#39;__rmod__&amp;#39;, &amp;#39;__rmul__&amp;#39;, &amp;#39;__setattr__&amp;#39;, &amp;#39;__sizeof__&amp;#39;, &amp;#39;__str__&amp;#39;, &amp;#39;__subclasshook__&amp;#39;, &amp;#39;_formatter_field_name_split&amp;#39;, &amp;#39;_formatter_parser&amp;#39;, &amp;#39;capitalize&amp;#39;, &amp;#39;center&amp;#39;, &amp;#39;count&amp;#39;, &amp;#39;decode&amp;#39;, &amp;#39;encode&amp;#39;, &amp;#39;endswith&amp;#39;, &amp;#39;expandtabs&amp;#39;, &amp;#39;find&amp;#39;, &amp;#39;format&amp;#39;, &amp;#39;index &amp;#39;, &amp;#39;isalnum&amp;#39;, &amp;#39;isalpha&amp;#39;, &amp;#39;isdigit&amp;#39;, &amp;#39;islower&amp;#39;, &amp;#39;isspace&amp;#39;, &amp;#39;istitle&amp;#39;, &amp;#39;isupper&amp;#39;, &amp;#39;join&amp;#39;, &amp;#39;ljust&amp;#39;, &amp;#39;lower&amp;#39;, &amp;#39;lstrip&amp;#39;, &amp;#39;partition&amp;#39;, &amp;#39;replace&amp;#39;, &amp;#39;rfind&amp;#39;, &amp;#39;rindex&amp;#39;, &amp;#39;rjust&amp;#39;, &amp;#39;rpartition&amp;#39;, &amp;#39;rsplit&amp;#39;, &amp;#39;rstrip&amp;#39;, &amp;#39;split&amp;#39;, &amp;#39;splitlines&amp;#39;, &amp;#39;startswith&amp;#39;, &amp;#39;strip&amp;#39;, &amp;#39;swapcase&amp;#39;, &amp;#39;title&amp;#39;, &amp;#39;translate&amp;#39;, &amp;#39;upper&amp;#39;, &amp;#39;zfill&amp;#39;]
+&lt;/pre&gt;
+&lt;p&gt;在上面的例子里面，定义了一个字符串s。然后使用内建的 dir( ) 方法来看这个实例有哪些属性。&lt;/p&gt;
+&lt;p&gt;注意输出里面出现的前后有两个下划线的方法，这些是Python的魔术方法，也是接下来要主要关注的。&lt;/p&gt;
+&lt;p&gt;我们首先要关注的有3个方法，&lt;strong&gt;new&lt;/strong&gt; 、&lt;strong&gt;init&lt;/strong&gt;和&lt;strong&gt;del&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;首先这里面最熟悉的应该是就是 &lt;strong&gt;init&lt;/strong&gt; 方法了，这也是我们在定义类的时候最常用的方法&lt;strong&gt;init&lt;/strong&gt; 一般被当作是类的构造函数。不过实际上构造首先会调用 &lt;strong&gt;new&lt;/strong&gt; 方法，由&lt;strong&gt;new&lt;/strong&gt; 方法来构造一个对象，然后返回对象，由&lt;strong&gt;init&lt;/strong&gt;来进行对象实例的初始化。不过大部分情况下&lt;strong&gt;init&lt;/strong&gt;就够用了。&lt;/p&gt;
+&lt;p&gt;上面介绍了构造函数，那么 &lt;strong&gt;del&lt;/strong&gt; 就是析构函数了，顾名思义，这是在对象被执行垃圾回收的时候执行。在这里要注意 x.&lt;strong&gt;del&lt;/strong&gt;( ) 并不实现del x的操作。在Python的内存管理中，有一个针对对象实例的计数器，只有计数器的计数变为0的时候，才会执行垃圾回收工作。所以计时一段Python程序执行结束，并不保证里面的对象实例的垃圾回收操作被触发。&lt;/p&gt;
+&lt;p&gt;下面用一个例子来说明：&lt;/p&gt;
+&lt;pre class=&quot;prettyprint linenums lang-python&quot;&gt;class Test(object):  
+
+    def __new__(cls,):  
+        print &amp;#39;in new method&amp;#39;  
+        return object.__new__(cls)  
+
+    def __init__(self):  
+        print &amp;#39;in init method&amp;#39;  
+
+    def __del__(self):  
+        print &amp;#39;in del method&amp;#39;  
+
+if __name__ == &amp;#39;__main__&amp;#39;:  
+
+    a = Test()
+&lt;/pre&gt;
+&lt;p&gt;这段代码的执行结果为：&lt;/p&gt;
+&lt;pre class=&quot;prettyprint linenums lang-python&quot;&gt;$ python test.py
+in new method  
+in init method  
+in del method
+&lt;/pre&gt;
+</description> 
         </item> 
         
         <item> 
             <title>新建博客啦</title> 
-            <link>http://albert-feng.github.io//articles/first-post.html?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=rss</link> 
+            <link>http://albert-feng.github.io//articles/first-post.html?utm_source=rss&amp;amp;utm_medium=rss&amp;amp;utm_campaign=rss</link> 
             <guid>http://albert-feng.github.io//articles/first-post.html</guid> 
             <author>fwg1989@gmail.com 贱圣</author> 
             <pubDate>Tue, 26 Nov 2013 00:00:00 +0800</pubDate> 
-            <description>终于在github上把blog弄好了，以后阵地就转移到这里了</description> 
+            <description>&lt;h1 id=&quot;-&quot;&gt;第一篇博客&lt;/h1&gt;
+&lt;p&gt;终于在github上弄好了博客，以后关于技术方面的文章就准备记录在这里了&lt;/p&gt;
+</description> 
         </item> 
         
     </channel>
