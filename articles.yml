@@ -1,3 +1,13 @@
+- id: dhcpd-restrict-mac
+  title: 使用Dhcpd限制获取IP的MAC地址
+  postedOn: !!str 2014-4-13
+  author: 贱圣
+  tags: 
+    - DHCP
+    - dhcpd
+    - network
+  abstract: 使用Dhcpd限制获取IP的MAC地址
+
 - id: mininet-basic
   title: mininet的基本使用与操作
   postedOn: !!str 2014-4-7

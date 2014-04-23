@@ -4,8 +4,36 @@
         <title>兵疯王座</title>
         <link>http://albert-feng.github.io/</link>
         <description>记录程序员路上的点滴</description>
-        <lastBuildDate>Sat, 12 Apr 2014 00:16:36 +0800</lastBuildDate>
+        <lastBuildDate>Wed, 23 Apr 2014 22:55:31 +0800</lastBuildDate>
         <language>zh-cn</language>
+        
+        <item> 
+            <title>使用Dhcpd限制获取IP的MAC地址</title> 
+            <link>http://albert-feng.github.io//articles/dhcpd-restrict-mac.html?utm_source=rss&amp;amp;utm_medium=rss&amp;amp;utm_campaign=rss</link> 
+            <guid>http://albert-feng.github.io//articles/dhcpd-restrict-mac.html</guid> 
+            <author>fwg1989@gmail.com 贱圣</author> 
+            <pubDate>Sun, 13 Apr 2014 00:00:00 +0800</pubDate> 
+            <description>&lt;p&gt;前几天解决了个很奇葩的DHCP的问题，在这记录下解决的方法。
+之前的分析过程就不赘述了，DHCP的原理见&lt;a href=&quot;http://zh.wikipedia.org/wiki/%E5%8A%A8%E6%80%81%E4%B8%BB%E6%9C%BA%E8%AE%BE%E7%BD%AE%E5%8D%8F%E8%AE%AE&quot;&gt;wiki&lt;/a&gt;，总之到最后，分析结果就是需要让DHCP Server需要把&amp;#39;c6:b0&amp;#39;开头的mac地址发过来的DHCP discover请求拒绝掉。DHCP Server使用的是Dhcpd。&lt;/p&gt;
+&lt;p&gt;在Dhcpd的&lt;a href=&quot;http://linux.die.net/man/5/dhcpd.conf&quot;&gt;man&lt;/a&gt;里面，终于找到了解决的方法。&lt;/p&gt;
+&lt;h2 id=&quot;client-classing&quot;&gt;Client Classing&lt;/h2&gt;
+&lt;p&gt;在Dhcpd的文档里，介绍了一种方法来定义一个类，用来对访问DHCP服务的客户端进行分类，这就叫Client Classing。具体定义的方法就跟面向对象的编程语言里面定义一个类非常类似。&lt;/p&gt;
+&lt;pre class=&quot;prettyprint linenums lang-shell&quot;&gt;class &amp;quot;clients&amp;quot; {
+  match if substring (option address, 1, 2) = &amp;quot;c6:b0&amp;quot;;
+}
+&lt;/pre&gt;
+&lt;p&gt;上面的代码里定义了一个叫client的类，它会匹配mac地址开头为c6:b0的DHCP client。这样就把我想要区分的DHCP client区别出来了。&lt;/p&gt;
+&lt;h2 id=&quot;deny&quot;&gt;Deny&lt;/h2&gt;
+&lt;p&gt;把相应的client区分出来之后，接下来就可以看如何来拒绝这些client发出的DHCP请求了。
+在Dhcpd的配置文件里支持对已定义的类进行拒绝。&lt;/p&gt;
+&lt;pre class=&quot;prettyprint linenums lang-shell&quot;&gt;members of &amp;quot;class&amp;quot;;
+&lt;/pre&gt;
+&lt;p&gt;那么结合前面的定义，就应该这么写：&lt;/p&gt;
+&lt;pre class=&quot;prettyprint linenums lang-shell&quot;&gt;members of &amp;quot;clients&amp;quot;;
+&lt;/pre&gt;
+&lt;p&gt;那么这样就能够对于特定的mac地址开头的设备发送的DHCP请求进行拒绝了。&lt;/p&gt;
+</description> 
+        </item> 
         
         <item> 
             <title>mininet的基本使用与操作</title> 
