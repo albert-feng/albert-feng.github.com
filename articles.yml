@@ -1,3 +1,13 @@
+- id: python-object
+  title: Python对象的属性
+  postedOn: !!str 2014-9-20
+  author: 贱圣
+  tags: 
+    - Python
+    - object
+    - attributes
+  abstract: Python对象属性的特性
+
 - id: dhcpd-restrict-mac
   title: 使用Dhcpd限制获取IP的MAC地址
   postedOn: !!str 2014-4-13
